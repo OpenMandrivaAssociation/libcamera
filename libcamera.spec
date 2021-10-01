@@ -20,24 +20,23 @@ Source1: qcam.desktop
 Source2: qcam.metainfo.xml
 
 BuildRequires: doxygen
-BuildRequires: gcc-c++
-BuildRequires: gtest-devel
+BuildRequires: pkgconfig(gtest)
 BuildRequires: desktop-file-utils
 BuildRequires: meson
 BuildRequires: openssl
-BuildRequires: ninja-build
-BuildRequires: python3-jinja2
-BuildRequires: python3-ply
-BuildRequires: python3-pyyaml
-BuildRequires: python3-sphinx
+BuildRequires: ninja
+BuildRequires: python3dist(jinja2)
+BuildRequires: python3dist(ply)
+BuildRequires: python3dist(pyyaml)
+BuildRequires: python3dist(sphinx)
 BuildRequires: boost-devel
 BuildRequires: pkgconfig(glib-2.0)
-BuildRequires: gnutls-devel
-BuildRequires: libatomic
-BuildRequires: libevent-devel
-BuildRequires: libtiff-devel
-BuildRequires: lttng-ust-devel
-BuildRequires: systemd-devel
+BuildRequires: pkgconfig(gnutls)
+#BuildRequires: libatomic
+BuildRequires: pkgconfig(libevent)
+BuildRequires: pkgconfig(libtiff-4)
+BuildRequires: pkgconfig(lttng-ust)
+BuildRequires: pkgconfig(systemd)
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: pkgconfig(Qt5Gui)
 BuildRequires: pkgconfig(Qt5Widgets)
@@ -97,23 +96,13 @@ Requires:    %{name}%{?_isa} = %{version}-%{release}
 GSTreamer plugins for %{name}
 
 %prep
-%autosetup -p1 -n %{name}-%{shortcommit}
+%autosetup -p1 -n %{name}-%{gitdate}
 
 %build
 # cam/qcam crash with LTO
-%global _lto_cflags %{nil}
+#global _lto_cflags %{nil}
 export CFLAGS="%{optflags} -Wno-deprecated-declarations"
 export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
-
-%ifarch ppc64le
-# 64-bit POWER LE does not use the IEEE long double ABI but
-# instead a custom one by default. This leads to libcamera
-# failing to build, use IEEE long double ABI to prevent it.
-#
-# https://bugzilla.redhat.com/show_bug.cgi?id=1538817
-export CFLAGS="${CFLAGS} -mabi=ieeelongdouble"
-export CXXFLAGS="${CXXFLAGS} -mabi=ieeelongdouble"
-%endif
 
 %meson
 %meson_build
