@@ -33,7 +33,7 @@ BuildRequires: python3dist(sphinx)
 BuildRequires: boost-devel
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gnutls)
-BuildRequires: %{lib}atomic1
+BuildRequires: %{_lib}atomic1
 BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(libevent)
 BuildRequires: pkgconfig(libtiff-4)
