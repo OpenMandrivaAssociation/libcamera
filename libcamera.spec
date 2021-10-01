@@ -20,6 +20,7 @@ Source1: qcam.desktop
 Source2: qcam.metainfo.xml
 
 BuildRequires: doxygen
+BuildReguires: graphviz
 BuildRequires: pkgconfig(gtest)
 BuildRequires: desktop-file-utils
 BuildRequires: meson
@@ -32,10 +33,12 @@ BuildRequires: python3dist(sphinx)
 BuildRequires: boost-devel
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gnutls)
-#BuildRequires: libatomic
+BuildRequires: %{lib}atomic1
+BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(libevent)
 BuildRequires: pkgconfig(libtiff-4)
 BuildRequires: pkgconfig(lttng-ust)
+BuildRequires: pkgconfig(libudev)
 BuildRequires: pkgconfig(systemd)
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: pkgconfig(Qt5Gui)
