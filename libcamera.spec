@@ -20,7 +20,7 @@ Source1: qcam.desktop
 Source2: qcam.metainfo.xml
 
 BuildRequires: doxygen
-BuildReguires: graphviz
+BuildRequires: graphviz
 BuildRequires: pkgconfig(gtest)
 BuildRequires: desktop-file-utils
 BuildRequires: meson
