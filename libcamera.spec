@@ -113,7 +113,8 @@ GSTreamer plugins for %{name}
 #export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 
 %meson  \
-        -Dwerror=false
+        -Dwerror=false \
+        -Dlc-compliance=disabled
 %meson_build
 
 %install
