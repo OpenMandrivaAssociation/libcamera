@@ -116,7 +116,9 @@ GSTreamer plugins for %{name}
 
 %meson  \
         -Dwerror=false \
-        -Dlc-compliance=disabled
+        -Dlc-compliance=disabled \
+        -Dtracing=disabled \
+        -Dv4l2=true
 %meson_build
 
 %install
