@@ -104,13 +104,13 @@ GSTreamer plugins for %{name}
 %build
 export CC=gcc
 export CXX=g++
-export CFLAGS="%optflags -Wno-error"
-export CXXFLAGS="$CFLAGS"
+#export CFLAGS="%optflags -Wno-error"
+#export CXXFLAGS="$CFLAGS"
 
 # cam/qcam crash with LTO
 #global _lto_cflags %{nil}
-export CFLAGS="%{optflags} -Wno-deprecated-declarations"
-export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
+#export CFLAGS="%{optflags} -Wno-deprecated-declarations"
+#export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 
 %meson
 %meson_build
