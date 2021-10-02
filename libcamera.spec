@@ -104,6 +104,8 @@ GSTreamer plugins for %{name}
 %build
 export CC=gcc
 export CXX=g++
+export CFLAGS="%optflags -Wno-error"
+export CXXFLAGS="$CFLAGS"
 
 # cam/qcam crash with LTO
 #global _lto_cflags %{nil}
