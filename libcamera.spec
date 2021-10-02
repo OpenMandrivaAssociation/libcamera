@@ -23,7 +23,7 @@ Source2: qcam.metainfo.xml
 
 BuildRequires: doxygen
 BuildRequires: graphviz
-BuildRequires: pkgconfig(gtest)
+#BuildRequires: pkgconfig(gtest)
 BuildRequires: desktop-file-utils
 BuildRequires: meson
 BuildRequires: openssl
