@@ -1,4 +1,4 @@
-%define _disable_lto 1
+#define _disable_lto 1
 
 %define gitdate 20210929
 
@@ -23,7 +23,7 @@ Source2: qcam.metainfo.xml
 
 BuildRequires: doxygen
 BuildRequires: graphviz
-#BuildRequires: pkgconfig(gtest)
+BuildRequires: pkgconfig(gtest)
 BuildRequires: desktop-file-utils
 BuildRequires: meson
 BuildRequires: openssl
@@ -104,8 +104,8 @@ GSTreamer plugins for %{name}
 %autosetup -p1 -n %{name}-%{gitdate}
 
 %build
-#export CC=gcc
-#export CXX=g++
+export CC=gcc
+export CXX=g++
 #export CFLAGS="%optflags -Wno-error"
 #export CXXFLAGS="$CFLAGS"
 
@@ -116,8 +116,6 @@ GSTreamer plugins for %{name}
 
 %meson  \
         -Dwerror=false \
-        -Dlc-compliance=disabled \
-        -Dtracing=disabled \
         -Dv4l2=true
 %meson_build
 
