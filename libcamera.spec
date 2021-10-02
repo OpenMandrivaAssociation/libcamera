@@ -102,8 +102,8 @@ GSTreamer plugins for %{name}
 %autosetup -p1 -n %{name}-%{gitdate}
 
 %build
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 #export CFLAGS="%optflags -Wno-error"
 #export CXXFLAGS="$CFLAGS"
 
