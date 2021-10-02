@@ -112,7 +112,8 @@ export CXX=g++
 #export CFLAGS="%{optflags} -Wno-deprecated-declarations"
 #export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 
-%meson
+%meson  \
+        -Dwerror=false
 %meson_build
 
 %install
