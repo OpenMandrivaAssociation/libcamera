@@ -1,3 +1,5 @@
+%define _disable_lto 1
+
 %define gitdate 20210929
 
 Name:    libcamera
