@@ -100,6 +100,13 @@ Requires:    %{name}%{?_isa} = %{version}-%{release}
 %description gstreamer
 GSTreamer plugins for %{name}
 
+%package     v4l2
+Summary:     V4L2 compatibility layer
+Requires:    %{name}%{?_isa} = %{version}-%{release}
+
+%description v4l2
+V4L2 compatibility layer
+
 %prep
 %autosetup -p1 -n %{name}-%{gitdate}
 
@@ -154,6 +161,9 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 
 %files gstreamer
 %{_libdir}/gstreamer-1.0/libgstlibcamera.so
+
+%files v4l2
+%{_libdir}/v4l2-compat.so
 
 %files qcam
 %{_bindir}/qcam
