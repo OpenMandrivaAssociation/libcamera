@@ -102,6 +102,9 @@ GSTreamer plugins for %{name}
 %autosetup -p1 -n %{name}-%{gitdate}
 
 %build
+export CC=gcc
+export CXX=g++
+
 # cam/qcam crash with LTO
 #global _lto_cflags %{nil}
 export CFLAGS="%{optflags} -Wno-deprecated-declarations"
