@@ -7,9 +7,6 @@
 %define	v4l2name %mklibname %{oname}-v4l2
 %define	devname	%mklibname %{oname} -d
 
-
-#define _disable_lto 1
-
 %define gitdate 20210929
 
 Name:    libcamera
@@ -128,15 +125,10 @@ V4L2 compatibility layer
 %autosetup -p1 -n %{name}-%{gitdate}
 
 %build
+# For now use GCC, because clang 13 failing with many errors, like a lot missing include:
+# #include <memory>, #include <type_traits>, #include <functional>, #include <atomic>, #include <list> and etc.
 export CC=gcc
 export CXX=g++
-#export CFLAGS="%optflags -Wno-error"
-#export CXXFLAGS="$CFLAGS"
-
-# cam/qcam crash with LTO
-#global _lto_cflags %{nil}
-#export CFLAGS="%{optflags} -Wno-deprecated-declarations"
-#export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 
 %meson  \
         -Dwerror=false \
