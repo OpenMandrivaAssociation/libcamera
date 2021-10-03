@@ -46,7 +46,7 @@ BuildRequires: %{_lib}atomic1
 BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(libevent)
 BuildRequires: pkgconfig(libtiff-4)
-BuildRequires: pkgconfig(lttng-ust)
+#BuildRequires: pkgconfig(lttng-ust)
 BuildRequires: pkgconfig(libudev)
 BuildRequires: pkgconfig(systemd)
 BuildRequires: pkgconfig(Qt5Core)
@@ -132,7 +132,8 @@ export CXX=g++
 
 %meson  \
         -Dwerror=false \
-        -Dv4l2=true
+        -Dv4l2=true \
+        -Dtracing=disabled
 %meson_build
 
 %install
