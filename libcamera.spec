@@ -158,28 +158,28 @@ cp -a %SOURCE2 %{buildroot}/%{_metainfodir}/
 rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.buildinfo
 rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 
-%files
+%files -n %{libname}
 %license COPYING.rst LICENSES/LGPL-2.1-or-later.txt
 %{_libdir}/libcamera*.so.*
 
-%files devel
+%files -n %{devname}
 %{_includedir}/%{name}/
 %{_libdir}/libcamera*.so
 %{_libdir}/pkgconfig/libcamera-base.pc
 %{_libdir}/pkgconfig/libcamera.pc
 
-%files doc
+%files -n %{docname}
 %doc %{_docdir}/%{name}-*/
 
-%files ipa
+%files -n %{ipaname}
 %{_datadir}/libcamera/
 %{_libdir}/libcamera/
 %{_libexecdir}/libcamera/
 
-%files gstreamer
+%files -n %{gstname}
 %{_libdir}/gstreamer-1.0/libgstlibcamera.so
 
-%files v4l2
+%files -n %{v4l2name}
 %{_libdir}/v4l2-compat.so
 
 %files qcam
