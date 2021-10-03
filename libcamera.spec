@@ -1,4 +1,11 @@
-#define _disable_lto 1
+%define oname camera
+
+%define	libname	%mklibname %{oname}
+%define	docname %mklibname %{oname}-doc
+%define	ipaname	%mklibname %{oname}-ipa
+%define	gstname	%mklibname %{oname}-gstreamer
+%define	v4l2name %mklibname %{oname}-v4l2
+%define	devname	%mklibname %{oname} -d
 
 %define gitdate 20210929
 
@@ -57,69 +64,71 @@ complex camera hardware such as ISPs.
 Hardware support includes USB UVC cameras, libv4l cameras as well as more
 complex ISPs (Image Signal Processor).
 
-%package     devel
-Summary:     Development package for %{name}
-Requires:    %{name}%{?_isa} = %{version}-%{release}
+%package -n %{libname}
+Summary:	Library for %{name}
+Group:		System/Libraries
 
-%description devel
+%description -n %{libname}
+Dynamic libraries from %{name}.
+
+%package -n %{devname}
+Summary:     Development package for %{name}
+Requires:    %{libname}%{?_isa} = %{version}-%{release}
+
+%description -n %{devname}
 Files for development with %{name}.
 
-%package     doc
+%package -n %{docname}
 Summary:     Documentation for %{name}
 BuildArch:   noarch
 
-%description doc
+%description -n %{docname}
 HTML based documentation for %{name} including getting started and API.
 
-%package     ipa
+%package -n %{ipaname}
 Summary:     ISP Image Processing Algorithm Plugins for %{name}
-Requires:    %{name}%{?_isa} = %{version}-%{release}
+Requires:    %{libname}%{?_isa} = %{version}-%{release}
 
-%description ipa
+%description -n %{ipaname}
 Image Processing Algorithms plugins for interfacing with device
 ISPs for %{name}
 
 %package     tools
 Summary:     Tools for %{name}
-Requires:    %{name}%{?_isa} = %{version}-%{release}
+Requires:    %{libname}%{?_isa} = %{version}-%{release}
 
 %description tools
 Command line tools for %{name}
 
 %package     qcam
 Summary:     Graphical QCam application for %{name}
-Requires:    %{name}%{?_isa} = %{version}-%{release}
+Requires:    %{libname}%{?_isa} = %{version}-%{release}
 
 %description qcam
 Graphical QCam application for %{name}
 
-%package     gstreamer
+%package -n %{gstname}
 Summary:     GSTreamer plugin for %{name}
-Requires:    %{name}%{?_isa} = %{version}-%{release}
+Requires:    %{libname}%{?_isa} = %{version}-%{release}
 
-%description gstreamer
+%description -n %{gstname}
 GSTreamer plugins for %{name}
 
-%package     v4l2
+%package -n %{v4l2name}
 Summary:     V4L2 compatibility layer
-Requires:    %{name}%{?_isa} = %{version}-%{release}
+Requires:    %{libname}%{?_isa} = %{version}-%{release}
 
-%description v4l2
+%description -n %{v4l2name}
 V4L2 compatibility layer
 
 %prep
 %autosetup -p1 -n %{name}-%{gitdate}
 
 %build
+# For now use GCC, because clang 13 failing with many errors, like a lot missing include:
+# #include <memory>, #include <type_traits>, #include <functional>, #include <atomic>, #include <list> and etc.
 export CC=gcc
 export CXX=g++
-#export CFLAGS="%optflags -Wno-error"
-#export CXXFLAGS="$CFLAGS"
-
-# cam/qcam crash with LTO
-#global _lto_cflags %{nil}
-#export CFLAGS="%{optflags} -Wno-deprecated-declarations"
-#export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 
 %meson  \
         -Dwerror=false \
@@ -141,28 +150,28 @@ cp -a %SOURCE2 %{buildroot}/%{_metainfodir}/
 rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.buildinfo
 rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 
-%files
+%files -n %{libname}
 %license COPYING.rst LICENSES/LGPL-2.1-or-later.txt
 %{_libdir}/libcamera*.so.*
 
-%files devel
+%files -n %{devname}
 %{_includedir}/%{name}/
 %{_libdir}/libcamera*.so
 %{_libdir}/pkgconfig/libcamera-base.pc
 %{_libdir}/pkgconfig/libcamera.pc
 
-%files doc
+%files -n %{docname}
 %doc %{_docdir}/%{name}-*/
 
-%files ipa
+%files -n %{ipaname}
 %{_datadir}/libcamera/
 %{_libdir}/libcamera/
 %{_libexecdir}/libcamera/
 
-%files gstreamer
+%files -n %{gstname}
 %{_libdir}/gstreamer-1.0/libgstlibcamera.so
 
-%files v4l2
+%files -n %{v4l2name}
 %{_libdir}/v4l2-compat.so
 
 %files qcam
