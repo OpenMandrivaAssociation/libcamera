@@ -7,7 +7,7 @@
 %define	v4l2name %mklibname %{oname}-v4l2
 %define	devname	%mklibname %{oname} -d
 
-%define gitdate 20210929
+%define gitdate 20220106
 
 Name:    libcamera
 Version: 0.0.0.%{gitdate}
