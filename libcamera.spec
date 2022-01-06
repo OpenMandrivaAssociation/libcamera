@@ -133,7 +133,7 @@ export CXX=g++
 %meson  \
         -Dwerror=false \
         -Dv4l2=true \
-        -Dlc-compliance=false \
+        -Dlc-compliance=disabled \
         -Dtracing=disabled
 %meson_build
 
