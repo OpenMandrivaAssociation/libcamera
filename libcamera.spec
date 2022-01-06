@@ -7,7 +7,7 @@
 %define	v4l2name %mklibname %{oname}-v4l2
 %define	devname	%mklibname %{oname} -d
 
-%define gitdate 20210929
+%define gitdate 20220106
 
 Name:    libcamera
 Version: 0.0.0.%{gitdate}
@@ -133,6 +133,7 @@ export CXX=g++
 %meson  \
         -Dwerror=false \
         -Dv4l2=true \
+        -Dlc-compliance=disabled \
         -Dtracing=disabled
 %meson_build
 
@@ -183,4 +184,4 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %files tools
 %license LICENSES/GPL-2.0-only.txt
 %{_bindir}/cam
-%{_bindir}/lc-compliance
+#{_bindir}/lc-compliance
