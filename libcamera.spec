@@ -184,4 +184,4 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %files tools
 %license LICENSES/GPL-2.0-only.txt
 %{_bindir}/cam
-%{_bindir}/lc-compliance
+#{_bindir}/lc-compliance
