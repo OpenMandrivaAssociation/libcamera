@@ -7,7 +7,7 @@
 %define	v4l2name %mklibname %{oname}-v4l2
 %define	devname	%mklibname %{oname} -d
 
-%define gitdate 20220106
+%define gitdate 20220724
 
 Name:    libcamera
 Version: 0.0.0.%{gitdate}
@@ -49,6 +49,7 @@ BuildRequires: pkgconfig(libtiff-4)
 #BuildRequires: pkgconfig(lttng-ust)
 BuildRequires: pkgconfig(libudev)
 BuildRequires: pkgconfig(systemd)
+BuildRequires: pkgconfig(yaml-0.1)
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: pkgconfig(Qt5Gui)
 BuildRequires: pkgconfig(Qt5Widgets)
@@ -154,6 +155,7 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 
 %files -n %{libname}
 %license COPYING.rst LICENSES/LGPL-2.1-or-later.txt
+%{_bindir}/libcamerify
 %{_libdir}/libcamera*.so.*
 
 %files -n %{devname}
