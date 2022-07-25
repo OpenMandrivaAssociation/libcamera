@@ -126,11 +126,6 @@ V4L2 compatibility layer
 %autosetup -p1 -n %{name}-%{gitdate}
 
 %build
-# For now use GCC, because clang 13 failing with many errors, like a lot missing include:
-# #include <memory>, #include <type_traits>, #include <functional>, #include <atomic>, #include <list> and etc.
-export CC=gcc
-export CXX=g++
-
 %meson  \
         -Dwerror=false \
         -Dv4l2=true \
