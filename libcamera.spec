@@ -7,11 +7,11 @@
 %define	v4l2name %mklibname %{oname}-v4l2
 %define	devname	%mklibname %{oname} -d
 
-%define gitdate 20220724
+%define gitdate 20230110
 
 Name:    libcamera
-Version: 0.0.0.%{gitdate}
-Release: 0.git.0
+Version: 0.0.3.%{gitdate}
+Release: 0.git.1
 Summary: A library to support complex camera ISPs
 # Library is LGPLv2.1+ and the cam tool is GPLv2
 License: LGPLv2+ and GPLv2
@@ -24,7 +24,7 @@ URL:     http://libcamera.org/
 # git clone --recursive https://git.linuxtv.org/libcamera.git
 # then create archive %{name}-%{gitdate}.tar.xz
 
-Source0: %{name}-%{gitdate}.tar.xz
+Source0: %{name}-%{version}.tar.xz
 Source1: qcam.desktop
 Source2: qcam.metainfo.xml
 
@@ -123,7 +123,7 @@ Requires:    %{libname}%{?_isa} = %{version}-%{release}
 V4L2 compatibility layer
 
 %prep
-%autosetup -p1 -n %{name}-%{gitdate}
+%autosetup -p1 -n %{name}-%{version}
 
 %build
 %meson  \
