@@ -166,7 +166,8 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %files -n %{ipaname}
 %{_datadir}/libcamera/
 %{_libdir}/libcamera/
-%{_libexecdir}/libcamera/ipu3_ipa_proxy
+%{_libexecdir}/libcamera/
+%exclude %{_libexecdir}/libcamera/v4l2-compat.so
 
 %files -n %{gstname}
 %{_libdir}/gstreamer-1.0/libgstlibcamera.so
