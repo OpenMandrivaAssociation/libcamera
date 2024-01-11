@@ -171,7 +171,7 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %{_libdir}/gstreamer-1.0/libgstlibcamera.so
 
 %files -n %{v4l2name}
-%{_libdir}/v4l2-compat.so
+#{_libdir}/v4l2-compat.so
 
 %files qcam
 %{_bindir}/qcam
