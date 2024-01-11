@@ -1,3 +1,4 @@
+%define major 0.2
 %define oname camera
 
 %define	libname	%mklibname %{oname}
@@ -7,24 +8,24 @@
 %define	v4l2name %mklibname %{oname}-v4l2
 %define	devname	%mklibname %{oname} -d
 
-%define gitdate 20230110
+#define gitdate 20230110
 
 Name:    libcamera
-Version: 0.0.3.%{gitdate}
-Release: 0.git.1
+Version: 0.2.0
+Release: 1
 Summary: A library to support complex camera ISPs
 # Library is LGPLv2.1+ and the cam tool is GPLv2
 License: LGPLv2+ and GPLv2
 URL:     http://libcamera.org/
 
-# Upstream is still under development so they are not tagging releases
-# yet (https://git.linuxtv.org/libcamera.git). Use the following to do
-# a rebase to a new snapshot:
+# Upstream is still under development but they start tagging releases
+# (https://git.linuxtv.org/libcamera.git). Use the following to do
+# a rebase to a new tag:
 #
 # git clone --recursive https://git.linuxtv.org/libcamera.git
 # then create archive %{name}-%{gitdate}.tar.xz
 
-Source0: %{name}-%{version}.tar.xz
+Source0: %{name}-%{version}.tar.gz
 Source1: qcam.desktop
 Source2: qcam.metainfo.xml
 
@@ -118,6 +119,7 @@ GSTreamer plugins for %{name}
 %package -n %{v4l2name}
 Summary:     V4L2 compatibility layer
 Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{name}-tools = %{version}-%{release}
 
 %description -n %{v4l2name}
 V4L2 compatibility layer
@@ -150,8 +152,7 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 
 %files -n %{libname}
 %license COPYING.rst LICENSES/LGPL-2.1-or-later.txt
-%{_bindir}/libcamerify
-%{_libdir}/libcamera*.so.*
+%{_libdir}/libcamera*.so.%{major}*
 
 %files -n %{devname}
 %{_includedir}/%{name}/
@@ -165,13 +166,13 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %files -n %{ipaname}
 %{_datadir}/libcamera/
 %{_libdir}/libcamera/
-%{_libexecdir}/libcamera/
+%{_libexecdir}/libcamera/ipu3_ipa_proxy
 
 %files -n %{gstname}
 %{_libdir}/gstreamer-1.0/libgstlibcamera.so
 
 %files -n %{v4l2name}
-%{_libdir}/v4l2-compat.so
+%{_libexecdir}/libcamera/v4l2-compat.so
 
 %files qcam
 %{_bindir}/qcam
@@ -181,4 +182,4 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %files tools
 %license LICENSES/GPL-2.0-only.txt
 %{_bindir}/cam
-#{_bindir}/lc-compliance
+%{_bindir}/libcamerify
