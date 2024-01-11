@@ -7,24 +7,24 @@
 %define	v4l2name %mklibname %{oname}-v4l2
 %define	devname	%mklibname %{oname} -d
 
-%define gitdate 20230110
+#define gitdate 20230110
 
 Name:    libcamera
-Version: 0.0.3.%{gitdate}
-Release: 0.git.1
+Version: 0.2.0
+Release: 1
 Summary: A library to support complex camera ISPs
 # Library is LGPLv2.1+ and the cam tool is GPLv2
 License: LGPLv2+ and GPLv2
 URL:     http://libcamera.org/
 
-# Upstream is still under development so they are not tagging releases
-# yet (https://git.linuxtv.org/libcamera.git). Use the following to do
-# a rebase to a new snapshot:
+# Upstream is still under development but they start tagging releases
+# (https://git.linuxtv.org/libcamera.git). Use the following to do
+# a rebase to a new tag:
 #
 # git clone --recursive https://git.linuxtv.org/libcamera.git
 # then create archive %{name}-%{gitdate}.tar.xz
 
-Source0: %{name}-%{version}.tar.xz
+Source0: %{name}-%{version}.tar.gz
 Source1: qcam.desktop
 Source2: qcam.metainfo.xml
 
