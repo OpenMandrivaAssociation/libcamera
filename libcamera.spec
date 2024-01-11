@@ -1,3 +1,4 @@
+%define major 0.2
 %define oname camera
 
 %define	libname	%mklibname %{oname}
@@ -118,6 +119,7 @@ GSTreamer plugins for %{name}
 %package -n %{v4l2name}
 Summary:     V4L2 compatibility layer
 Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{name}-tools = %{version}-%{release}
 
 %description -n %{v4l2name}
 V4L2 compatibility layer
@@ -150,8 +152,7 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 
 %files -n %{libname}
 %license COPYING.rst LICENSES/LGPL-2.1-or-later.txt
-%{_bindir}/libcamerify
-%{_libdir}/libcamera*.so.*
+%{_libdir}/libcamera*.so.%{major}*
 
 %files -n %{devname}
 %{_includedir}/%{name}/
@@ -165,13 +166,13 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %files -n %{ipaname}
 %{_datadir}/libcamera/
 %{_libdir}/libcamera/
-%{_libexecdir}/libcamera/
+%{_libexecdir}/libcamera/ipu3_ipa_proxy
 
 %files -n %{gstname}
 %{_libdir}/gstreamer-1.0/libgstlibcamera.so
 
 %files -n %{v4l2name}
-#{_libdir}/v4l2-compat.so
+%{_libexecdir}/libcamera/v4l2-compat.so
 
 %files qcam
 %{_bindir}/qcam
@@ -181,4 +182,4 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %files tools
 %license LICENSES/GPL-2.0-only.txt
 %{_bindir}/cam
-#{_bindir}/lc-compliance
+%{_bindir}/libcamerify
