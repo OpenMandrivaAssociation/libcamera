@@ -1,4 +1,6 @@
-%define major 0.2
+%define _disable_ld_no_undefined 1
+
+%define major 0.3
 %define oname camera
 
 %define	libname	%mklibname %{oname}
@@ -11,12 +13,12 @@
 #define gitdate 20230110
 
 Name:    libcamera
-Version: 0.2.0
+Version: 0.3.0
 Release: 1
 Summary: A library to support complex camera ISPs
 # Library is LGPLv2.1+ and the cam tool is GPLv2
 License: LGPLv2+ and GPLv2
-URL:     http://libcamera.org/
+URL:     https://libcamera.org/
 
 # Upstream is still under development but they start tagging releases
 # (https://git.linuxtv.org/libcamera.git). Use the following to do
@@ -25,9 +27,11 @@ URL:     http://libcamera.org/
 # git clone --recursive https://git.linuxtv.org/libcamera.git
 # then create archive %{name}-%{gitdate}.tar.xz
 
-Source0: %{name}-%{version}.tar.gz
+Source0: %{name}-%{version}.tar.xz
 Source1: qcam.desktop
 Source2: qcam.metainfo.xml
+# Port it to qt6	
+Patch0001: 0001-apps-qcam-Port-to-Qt-6.patch
 
 BuildRequires: doxygen
 BuildRequires: graphviz
@@ -36,10 +40,12 @@ BuildRequires: desktop-file-utils
 BuildRequires: meson
 BuildRequires: openssl
 BuildRequires: ninja
+BuildRequires: pkgconfig(python)
 BuildRequires: python3dist(jinja2)
 BuildRequires: python3dist(ply)
 BuildRequires: python3dist(pyyaml)
 BuildRequires: python3dist(sphinx)
+BuildRequires: pkgconfig(pybind11)
 BuildRequires: boost-devel
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gnutls)
@@ -47,13 +53,16 @@ BuildRequires: %{_lib}atomic1
 BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(libevent)
 BuildRequires: pkgconfig(libtiff-4)
-#BuildRequires: pkgconfig(lttng-ust)
+BuildRequires: pkgconfig(lttng-ust)
 BuildRequires: pkgconfig(libudev)
+BuildRequires: pkgconfig(sdl2)
 BuildRequires: pkgconfig(systemd)
 BuildRequires: pkgconfig(yaml-0.1)
-BuildRequires: pkgconfig(Qt5Core)
-BuildRequires: pkgconfig(Qt5Gui)
-BuildRequires: pkgconfig(Qt5Widgets)
+BuildRequires: pkgconfig(Qt6Core)
+BuildRequires: pkgconfig(Qt6Gui)
+BuildRequires: pkgconfig(Qt6OpenGL)
+BuildRequires: pkgconfig(Qt6OpenGLWidgets)
+BuildRequires: pkgconfig(Qt6Widgets)
 BuildRequires: pkgconfig(gstreamer-video-1.0)
 BuildRequires: pkgconfig(gstreamer-allocators-1.0)
 
@@ -75,7 +84,7 @@ Dynamic libraries from %{name}.
 
 %package -n %{devname}
 Summary:     Development package for %{name}
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 
 %description -n %{devname}
 Files for development with %{name}.
@@ -89,7 +98,7 @@ HTML based documentation for %{name} including getting started and API.
 
 %package -n %{ipaname}
 Summary:     ISP Image Processing Algorithm Plugins for %{name}
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 
 %description -n %{ipaname}
 Image Processing Algorithms plugins for interfacing with device
@@ -97,32 +106,40 @@ ISPs for %{name}
 
 %package     tools
 Summary:     Tools for %{name}
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 
 %description tools
 Command line tools for %{name}
 
 %package     qcam
 Summary:     Graphical QCam application for %{name}
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 
 %description qcam
 Graphical QCam application for %{name}
 
 %package -n %{gstname}
 Summary:     GSTreamer plugin for %{name}
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 
 %description -n %{gstname}
 GSTreamer plugins for %{name}
 
 %package -n %{v4l2name}
 Summary:     V4L2 compatibility layer
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 Requires:    %{name}-tools = %{version}-%{release}
 
 %description -n %{v4l2name}
 V4L2 compatibility layer
+
+%package -n python-%{name}
+Summary:     Python bindings for %{name}
+Requires:    %{libname} = %{EVRD}
+
+%description -n python-%{name}
+Python bindings for %{name}
+
 
 %prep
 %autosetup -p1 -n %{name}-%{version}
@@ -184,3 +201,6 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %license LICENSES/GPL-2.0-only.txt
 %{_bindir}/cam
 %{_bindir}/libcamerify
+
+%files -n python-%{name}
+%{python_sitearch}/* 
