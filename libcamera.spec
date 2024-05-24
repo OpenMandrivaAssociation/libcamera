@@ -84,7 +84,7 @@ Dynamic libraries from %{name}.
 
 %package -n %{devname}
 Summary:     Development package for %{name}
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 
 %description -n %{devname}
 Files for development with %{name}.
@@ -98,7 +98,7 @@ HTML based documentation for %{name} including getting started and API.
 
 %package -n %{ipaname}
 Summary:     ISP Image Processing Algorithm Plugins for %{name}
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 
 %description -n %{ipaname}
 Image Processing Algorithms plugins for interfacing with device
@@ -106,28 +106,28 @@ ISPs for %{name}
 
 %package     tools
 Summary:     Tools for %{name}
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 
 %description tools
 Command line tools for %{name}
 
 %package     qcam
 Summary:     Graphical QCam application for %{name}
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 
 %description qcam
 Graphical QCam application for %{name}
 
 %package -n %{gstname}
 Summary:     GSTreamer plugin for %{name}
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 
 %description -n %{gstname}
 GSTreamer plugins for %{name}
 
 %package -n %{v4l2name}
 Summary:     V4L2 compatibility layer
-Requires:    %{libname}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 Requires:    %{name}-tools = %{version}-%{release}
 
 %description -n %{v4l2name}
@@ -135,7 +135,7 @@ V4L2 compatibility layer
 
 %package -n python-%{name}
 Summary:     Python bindings for %{name}
-Requires:    %{name}%{?_isa} = %{version}-%{release}
+Requires:    %{libname} = %{EVRD}
 
 %description -n python-%{name}
 Python bindings for %{name}
