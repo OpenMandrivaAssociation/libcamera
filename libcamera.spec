@@ -28,6 +28,8 @@ URL:     https://libcamera.org/
 Source0: %{name}-%{version}.tar.xz
 Source1: qcam.desktop
 Source2: qcam.metainfo.xml
+# Port it to qt6	
+Patch0001: 0001-apps-qcam-Port-to-Qt-6.patch
 
 BuildRequires: doxygen
 BuildRequires: graphviz
@@ -36,10 +38,12 @@ BuildRequires: desktop-file-utils
 BuildRequires: meson
 BuildRequires: openssl
 BuildRequires: ninja
+BuildRequires: pkgconfig(python)
 BuildRequires: python3dist(jinja2)
 BuildRequires: python3dist(ply)
 BuildRequires: python3dist(pyyaml)
 BuildRequires: python3dist(sphinx)
+BuildRequires: pkgconfig(pybind11)
 BuildRequires: boost-devel
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gnutls)
@@ -49,11 +53,14 @@ BuildRequires: pkgconfig(libevent)
 BuildRequires: pkgconfig(libtiff-4)
 #BuildRequires: pkgconfig(lttng-ust)
 BuildRequires: pkgconfig(libudev)
+BuildRequires: pkgconfig(sdl2)
 BuildRequires: pkgconfig(systemd)
 BuildRequires: pkgconfig(yaml-0.1)
-BuildRequires: pkgconfig(Qt5Core)
-BuildRequires: pkgconfig(Qt5Gui)
-BuildRequires: pkgconfig(Qt5Widgets)
+BuildRequires: pkgconfig(Qt6Core)
+BuildRequires: pkgconfig(Qt6Gui)
+BuildRequires: pkgconfig(Qt6OpenGL)
+BuildRequires: pkgconfig(Qt6OpenGLWidgets)
+BuildRequires: pkgconfig(Qt6Widgets)
 BuildRequires: pkgconfig(gstreamer-video-1.0)
 BuildRequires: pkgconfig(gstreamer-allocators-1.0)
 
@@ -124,6 +131,14 @@ Requires:    %{name}-tools = %{version}-%{release}
 %description -n %{v4l2name}
 V4L2 compatibility layer
 
+%package     -n python-%{name}
+Summary:     Python bindings for %{name}
+Requires:    %{name}%{?_isa} = %{version}-%{release}
+
+%description -n python3-%{name}
+Python bindings for %{name}
+
+
 %prep
 %autosetup -p1 -n %{name}-%{version}
 
@@ -184,3 +199,6 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %license LICENSES/GPL-2.0-only.txt
 %{_bindir}/cam
 %{_bindir}/libcamerify
+
+%files -n python-%{name}
+%{python_sitearch}/* 
