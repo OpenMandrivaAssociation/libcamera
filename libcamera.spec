@@ -51,7 +51,7 @@ BuildRequires: %{_lib}atomic1
 BuildRequires: pkgconfig(libdrm)
 BuildRequires: pkgconfig(libevent)
 BuildRequires: pkgconfig(libtiff-4)
-#BuildRequires: pkgconfig(lttng-ust)
+BuildRequires: pkgconfig(lttng-ust)
 BuildRequires: pkgconfig(libudev)
 BuildRequires: pkgconfig(sdl2)
 BuildRequires: pkgconfig(systemd)
