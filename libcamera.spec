@@ -131,11 +131,11 @@ Requires:    %{name}-tools = %{version}-%{release}
 %description -n %{v4l2name}
 V4L2 compatibility layer
 
-%package     -n python-%{name}
+%package -n python-%{name}
 Summary:     Python bindings for %{name}
 Requires:    %{name}%{?_isa} = %{version}-%{release}
 
-%description -n python3-%{name}
+%description -n python-%{name}
 Python bindings for %{name}
 
 
