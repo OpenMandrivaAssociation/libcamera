@@ -30,8 +30,6 @@ URL:     https://libcamera.org/
 Source0: %{name}-%{version}.tar.xz
 Source1: qcam.desktop
 Source2: qcam.metainfo.xml
-# Port it to qt6	
-#Patch0001: 0001-apps-qcam-Port-to-Qt-6.patch
 
 BuildRequires: doxygen
 BuildRequires: graphviz
