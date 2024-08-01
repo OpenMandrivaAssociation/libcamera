@@ -13,7 +13,7 @@
 #define gitdate 20230110
 
 Name:    libcamera
-Version: 0.3.0
+Version: 0.3.1
 Release: 1
 Summary: A library to support complex camera ISPs
 # Library is LGPLv2.1+ and the cam tool is GPLv2
@@ -31,7 +31,7 @@ Source0: %{name}-%{version}.tar.xz
 Source1: qcam.desktop
 Source2: qcam.metainfo.xml
 # Port it to qt6	
-Patch0001: 0001-apps-qcam-Port-to-Qt-6.patch
+#Patch0001: 0001-apps-qcam-Port-to-Qt-6.patch
 
 BuildRequires: doxygen
 BuildRequires: graphviz
