@@ -13,7 +13,7 @@
 #define gitdate 20230110
 
 Name:    libcamera
-Version: 0.3.1
+Version: 0.3.2
 Release: 1
 Summary: A library to support complex camera ISPs
 # Library is LGPLv2.1+ and the cam tool is GPLv2
@@ -24,7 +24,8 @@ URL:     https://libcamera.org/
 # (https://git.linuxtv.org/libcamera.git). Use the following to do
 # a rebase to a new tag:
 #
-# git clone --recursive https://git.linuxtv.org/libcamera.git
+# git clone --branch v0.3.2 https://git.linuxtv.org/libcamera.git
+
 # then create archive %{name}-%{gitdate}.tar.xz
 
 Source0: %{name}-%{version}.tar.xz
