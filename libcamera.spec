@@ -147,6 +147,7 @@ Python bindings for %{name}
 %meson  \
         -Dwerror=false \
         -Dv4l2=true \
+        -Dpipelines=ipu3,rkisp1,simple,uvcvideo,vimc \
         -Dlc-compliance=disabled \
         -Dtracing=disabled
 %meson_build
