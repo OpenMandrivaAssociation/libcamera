@@ -88,12 +88,12 @@ Requires:    %{libname} = %{EVRD}
 %description -n %{devname}
 Files for development with %{name}.
 
-%package -n %{docname}
-Summary:     Documentation for %{name}
-BuildArch:   noarch
+#package -n %{docname}
+#Summary:     Documentation for %{name}
+#BuildArch:   noarch
 
-%description -n %{docname}
-HTML based documentation for %{name} including getting started and API.
+#description -n %{docname}
+#HTML based documentation for %{name} including getting started and API.
 
 %package -n %{ipaname}
 Summary:     ISP Image Processing Algorithm Plugins for %{name}
@@ -178,8 +178,8 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %{_libdir}/pkgconfig/libcamera-base.pc
 %{_libdir}/pkgconfig/libcamera.pc
 
-%files -n %{docname}
-%doc %{_docdir}/%{name}-*/
+#files -n %{docname}
+#doc %{_docdir}/%{name}-*/
 
 %files -n %{ipaname}
 %{_datadir}/libcamera/
