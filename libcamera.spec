@@ -13,7 +13,7 @@
 #define gitdate 20230110
 
 Name:    libcamera
-Version: 0.5.1
+Version: 0.5.2
 Release: 1
 Summary: A library to support complex camera ISPs
 # Library is LGPLv2.1+ and the cam tool is GPLv2
