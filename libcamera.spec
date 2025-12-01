@@ -1,6 +1,6 @@
 %define _disable_ld_no_undefined 1
 
-%define major 0.5
+%define major 0.6
 %define oname camera
 
 %define	libname	%mklibname %{oname}
