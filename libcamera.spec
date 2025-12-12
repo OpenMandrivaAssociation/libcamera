@@ -14,7 +14,7 @@
 
 Name:    libcamera
 Version: 0.6.0
-Release: 1
+Release: 2
 Summary: A library to support complex camera ISPs
 # Library is LGPLv2.1+ and the cam tool is GPLv2
 License: LGPLv2+ and GPLv2
