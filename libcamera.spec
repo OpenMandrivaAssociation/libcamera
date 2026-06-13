@@ -202,6 +202,7 @@ rm -rf ${RPM_BUILD_ROOT}/%{_docdir}/%{name}-*/html/.doctrees
 %license LICENSES/GPL-2.0-only.txt
 %{_bindir}/cam
 %{_bindir}/libcamerify
+%{_bindir}/libcamera-bug-report
 
 %files -n python-%{name}
 %{python_sitearch}/* 
