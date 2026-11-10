@@ -1,6 +1,6 @@
 %define _disable_ld_no_undefined 1
 
-%define major 0.7
+%define major 0.8
 %define oname camera
 
 %define	libname	%mklibname %{oname}
@@ -13,8 +13,8 @@
 #define gitdate 20230110
 
 Name:    libcamera
-Version: 0.7.2
-Release: 2
+Version: 0.8.0
+Release: 1
 Summary: A library to support complex camera ISPs
 # Library is LGPLv2.1+ and the cam tool is GPLv2
 License: LGPLv2+ and GPLv2
